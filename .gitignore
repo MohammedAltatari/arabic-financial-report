@@ -1,0 +1,22 @@
+# SQL Server backup (download from Microsoft - see README)
+*.bak
+
+# Excel temp / lock files
+~$*.xls*
+
+# Power BI project (PBIP): local cache with data + per-user settings
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# VS Code local settings
+.vscode/
+
+# Secrets
+.env
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Local drafts (not published)
+_drafts/
