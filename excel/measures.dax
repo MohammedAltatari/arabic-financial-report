@@ -1,0 +1,51 @@
+// =============================================
+// measures.dax
+// Step 2.3: Core DAX measures (Excel Power Pivot) — home table: FactFinance
+// SignedAmountUSD already carries the effective sign:
+//   revenue positive, costs/expenses negative
+// => Variance = Actual - Budget : positive = Favorable, negative = Unfavorable
+// =============================================
+
+// 1) Actual
+Actual :=
+CALCULATE (
+    SUM ( FactFinance[SignedAmountUSD] ),
+    DimScenario[ScenarioNameEN] = "Actual"
+)
+
+// 2) Budget
+Budget :=
+CALCULATE (
+    SUM ( FactFinance[SignedAmountUSD] ),
+    DimScenario[ScenarioNameEN] = "Budget"
+)
+
+// 3) Actual, only for months that have a budget (Dec 2010 .. Nov 2011)
+//    A month "has a budget" if the company budgeted anything in it,
+//    regardless of account / department / branch filters.
+Actual (Budget Period) :=
+SUMX (
+    VALUES ( DimDate[YearMonthKey] ),
+    IF (
+        NOT ISBLANK (
+            CALCULATE (
+                [Budget],
+                ALL ( DimAccount ),
+                ALL ( DimDepartment ),
+                ALL ( DimOrganization )
+            )
+        ),
+        [Actual]
+    )
+)
+
+// 4) Variance (blank where there is no budget)
+Variance :=
+IF (
+    NOT ISBLANK ( [Budget] ),
+    [Actual (Budget Period)] - [Budget]
+)
+
+// 5) Variance %  (divide by ABS so the sign is not flipped for negative expenses)
+Variance % :=
+DIVIDE ( [Variance], ABS ( [Budget] ) )
