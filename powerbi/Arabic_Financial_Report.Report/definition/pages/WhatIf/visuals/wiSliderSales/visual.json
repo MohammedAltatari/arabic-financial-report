@@ -3,11 +3,11 @@
   "name": "wiSliderSales",
   "position": {
     "x": 880,
-    "y": 110,
-    "z": 2,
-    "height": 110,
+    "y": 118,
+    "z": 12,
+    "height": 109,
     "width": 360,
-    "tabOrder": 2
+    "tabOrder": 12
   },
   "visual": {
     "visualType": "slicer",

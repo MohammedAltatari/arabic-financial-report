@@ -301,20 +301,13 @@ table FactFinance
 		displayFolder: 5. Income Statement
 		lineageTag: e1b3c50f-9311-4391-9ea8-2f697b09eac8
 
-	/// Waterfall value: budgeted operating profit on the first row, then each group's variance. Bars add up to actual operating profit.
+	/// Waterfall value: operating-profit variance of the groups in the current bridge row. The total bar = total variance vs budget.
 	measure 'Bridge Value' =
-			VAR k = SELECTEDVALUE ( 'Variance Bridge'[BridgeKey] )
-			RETURN
-			    SWITCH (
-			        TRUE (),
-			        ISBLANK ( k ), [OP Actual],
-			        k = 0, [OP Budget],
-			        CALCULATE (
-			            [Actual (Budget Period)] - [Budget],
-			            TREATAS ( { k }, DimAccount[Level4Key] ),
-			            DimAccount[Level2EN] = "Operating Profit"
-			        )
-			    )
+			CALCULATE (
+			    [Actual (Budget Period)] - [Budget],
+			    TREATAS ( VALUES ( 'Variance Bridge'[BridgeKey] ), DimAccount[Level4Key] ),
+			    DimAccount[Level2EN] = "Operating Profit"
+			)
 		formatString: #,0;(#,0);-
 		displayFolder: 8. Variance Analysis
 		lineageTag: 2cb6c179-e626-4755-97c9-a5a0f7ee0536

@@ -3,11 +3,11 @@
   "name": "wiCardRequired",
   "position": {
     "x": 40,
-    "y": 236,
-    "z": 8,
-    "height": 120,
+    "y": 242,
+    "z": 18,
+    "height": 118,
     "width": 260,
-    "tabOrder": 8
+    "tabOrder": 18
   },
   "visual": {
     "visualType": "card",

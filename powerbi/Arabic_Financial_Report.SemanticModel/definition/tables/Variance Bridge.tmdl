@@ -46,25 +46,31 @@ table 'Variance Bridge'
 	partition 'Variance Bridge' = calculated
 		mode: import
 		source =
-				-- Budget-to-actual bridge for Operating Profit:
-				-- row 0 = budgeted operating profit, then one row per Level-4 group under Operating Profit
-				-- (Net Sales, Cost of Sales, Labor Expenses, Travel Expenses, ...), in income-statement order.
+				-- Variance bridge for Operating Profit: one row per Level-4 group under Operating Profit
+				-- (Net Sales, Cost of Sales, Labor Expenses, ...). Groups whose variance for the whole budget
+				-- period is below 50,000 USD are folded into a single "Other items" bar to keep the chart readable.
 				VAR Groups =
 				    CALCULATETABLE (
 				        SUMMARIZE ( DimAccount, DimAccount[Level4Key], DimAccount[Level4Sort], DimAccount[Level4AR], DimAccount[Level4EN] ),
 				        DimAccount[Level2EN] = "Operating Profit",
 				        DimAccount[AccountDepth] >= 4
 				    )
+				VAR WithVariance =
+				    ADDCOLUMNS (
+				        Groups,
+				        "@Var",
+				            CALCULATE (
+				                [Actual (Budget Period)] - [Budget],
+				                ALLEXCEPT ( DimAccount, DimAccount[Level4Key] )
+				            )
+				    )
 				RETURN
-				    UNION (
-				        ROW ( "BridgeKey", 0, "BridgeSort", 0, "BridgeAR", "الربح التشغيلي المخطط", "BridgeEN", "Budgeted Operating Profit" ),
-				        SELECTCOLUMNS (
-				            Groups,
-				            "BridgeKey", DimAccount[Level4Key],
-				            "BridgeSort", DimAccount[Level4Sort],
-				            "BridgeAR", DimAccount[Level4AR],
-				            "BridgeEN", DimAccount[Level4EN]
-				        )
+				    SELECTCOLUMNS (
+				        WithVariance,
+				        "BridgeKey", DimAccount[Level4Key],
+				        "BridgeSort", IF ( ABS ( [@Var] ) < 50000, 9999, DimAccount[Level4Sort] ),
+				        "BridgeAR", IF ( ABS ( [@Var] ) < 50000, "بنود أخرى", DimAccount[Level4AR] ),
+				        "BridgeEN", IF ( ABS ( [@Var] ) < 50000, "Other items", DimAccount[Level4EN] )
 				    )
 
 	annotation PBI_Id = 5d5e356e8d2b47949d6726f9e9db8759

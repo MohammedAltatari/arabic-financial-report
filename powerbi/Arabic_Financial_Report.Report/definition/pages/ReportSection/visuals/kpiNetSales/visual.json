@@ -3,11 +3,11 @@
   "name": "kpiNetSales",
   "position": {
     "x": 1016,
-    "y": 104,
-    "z": 2,
-    "height": 116,
+    "y": 118,
+    "z": 12,
+    "height": 113,
     "width": 224,
-    "tabOrder": 2
+    "tabOrder": 12
   },
   "visual": {
     "visualType": "card",

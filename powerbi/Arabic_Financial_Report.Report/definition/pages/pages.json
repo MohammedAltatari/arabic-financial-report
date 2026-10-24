@@ -4,7 +4,11 @@
     "ReportSection",
     "IncomeStatement",
     "VarianceAnalysis",
-    "WhatIf"
+    "WhatIf",
+    "ReportSectionEN",
+    "IncomeStatementEN",
+    "VarianceAnalysisEN",
+    "WhatIfEN"
   ],
-  "activePageName": "WhatIf"
+  "activePageName": "ReportSection"
 }

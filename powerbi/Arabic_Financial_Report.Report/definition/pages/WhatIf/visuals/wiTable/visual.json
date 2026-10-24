@@ -3,11 +3,11 @@
   "name": "wiTable",
   "position": {
     "x": 640,
-    "y": 372,
-    "z": 9,
-    "height": 328,
+    "y": 376,
+    "z": 19,
+    "height": 324,
     "width": 600,
-    "tabOrder": 9
+    "tabOrder": 19
   },
   "visual": {
     "visualType": "tableEx",
@@ -53,12 +53,12 @@
                       "Entity": "FactFinance"
                     }
                   },
-                  "Property": "WI Line Simulated"
+                  "Property": "WI Line Budget"
                 }
               },
-              "queryRef": "FactFinance.WI Line Simulated",
-              "nativeQueryRef": "WI Line Simulated",
-              "displayName": "المحاكى"
+              "queryRef": "FactFinance.WI Line Budget",
+              "nativeQueryRef": "WI Line Budget",
+              "displayName": "الموازنة"
             },
             {
               "field": {
@@ -68,12 +68,12 @@
                       "Entity": "FactFinance"
                     }
                   },
-                  "Property": "WI Line Budget"
+                  "Property": "WI Line Simulated"
                 }
               },
-              "queryRef": "FactFinance.WI Line Budget",
-              "nativeQueryRef": "WI Line Budget",
-              "displayName": "الموازنة"
+              "queryRef": "FactFinance.WI Line Simulated",
+              "nativeQueryRef": "WI Line Simulated",
+              "displayName": "المحاكى"
             }
           ]
         }
@@ -93,7 +93,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },
@@ -114,6 +114,13 @@
                   "Value": "'Center'"
                 }
               }
+            },
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
             }
           }
         }
@@ -124,7 +131,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             }
@@ -138,6 +145,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
                 }
               }
             }

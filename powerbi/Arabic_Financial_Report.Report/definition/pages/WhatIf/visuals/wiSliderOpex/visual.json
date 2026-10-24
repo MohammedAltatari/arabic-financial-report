@@ -3,11 +3,11 @@
   "name": "wiSliderOpex",
   "position": {
     "x": 500,
-    "y": 110,
-    "z": 3,
-    "height": 110,
+    "y": 118,
+    "z": 13,
+    "height": 109,
     "width": 360,
-    "tabOrder": 3
+    "tabOrder": 13
   },
   "visual": {
     "visualType": "slicer",

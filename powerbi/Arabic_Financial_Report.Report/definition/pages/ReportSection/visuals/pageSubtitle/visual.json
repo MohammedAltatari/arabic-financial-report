@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "pageSubtitle",
   "position": {
-    "x": 40,
+    "x": 170,
     "y": 58,
-    "z": 1,
-    "height": 36,
-    "width": 1200,
-    "tabOrder": 1
+    "z": 61,
+    "height": 34,
+    "width": 1020,
+    "tabOrder": 61
   },
   "visual": {
     "visualType": "textbox",
@@ -21,8 +21,8 @@
                   {
                     "value": "فترة الموازنة: ديسمبر 2010 إلى نوفمبر 2011  |  المبالغ بالدولار الأمريكي  |  المقارنة على مستوى الربح التشغيلي",
                     "textStyle": {
-                      "fontSize": "11pt",
-                      "color": "#6B7280"
+                      "fontSize": "10pt",
+                      "color": "#D6E4F0"
                     }
                   }
                 ],

@@ -3,11 +3,11 @@
   "name": "slicerCutoff",
   "position": {
     "x": 40,
-    "y": 284,
-    "z": 9,
-    "height": 76,
+    "y": 294,
+    "z": 19,
+    "height": 74,
     "width": 340,
-    "tabOrder": 9
+    "tabOrder": 19
   },
   "visual": {
     "visualType": "slicer",

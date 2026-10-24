@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "isSlicerCutoff",
   "position": {
-    "x": 40,
-    "y": 12,
-    "z": 3,
-    "height": 46,
-    "width": 280,
-    "tabOrder": 3
+    "x": 166,
+    "y": 16,
+    "z": 70,
+    "height": 70,
+    "width": 220,
+    "tabOrder": 70
   },
   "visual": {
     "visualType": "slicer",

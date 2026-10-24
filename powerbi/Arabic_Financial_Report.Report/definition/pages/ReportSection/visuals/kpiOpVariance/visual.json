@@ -3,11 +3,11 @@
   "name": "kpiOpVariance",
   "position": {
     "x": 284,
-    "y": 104,
-    "z": 5,
-    "height": 116,
+    "y": 118,
+    "z": 15,
+    "height": 113,
     "width": 224,
-    "tabOrder": 5
+    "tabOrder": 15
   },
   "visual": {
     "visualType": "card",

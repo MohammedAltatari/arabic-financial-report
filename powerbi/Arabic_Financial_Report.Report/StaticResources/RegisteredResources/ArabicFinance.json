@@ -1,0 +1,136 @@
+{
+  "name": "Arabic Finance",
+  "dataColors": [
+    "#1F4E79",
+    "#9CA3AF",
+    "#E07B39",
+    "#2E86AB",
+    "#6C8EBF",
+    "#B279A2",
+    "#F2C14E",
+    "#5B8C5A"
+  ],
+  "foreground": "#1F2937",
+  "foregroundNeutralSecondary": "#6B7280",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F3F4F6",
+  "tableAccent": "#1F4E79",
+  "good": "#1E8449",
+  "neutral": "#9CA3AF",
+  "bad": "#C0392B",
+  "maximum": "#1E8449",
+  "center": "#F3F4F6",
+  "minimum": "#C0392B",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 26,
+      "color": "#1F2937"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#1F4E79"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#1F2937"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#374151"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "alignment": "right",
+            "fontFamily": "Segoe UI Semibold",
+            "fontColor": {
+              "solid": {
+                "color": "#1F4E79"
+              }
+            }
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E5E7EB"
+              }
+            },
+            "radius": 8
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F5F7FA"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "textbox": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "waterfallChart": {
+      "*": {
+        "sentimentColors": [
+          {
+            "increaseFill": {
+              "solid": {
+                "color": "#1E8449"
+              }
+            },
+            "decreaseFill": {
+              "solid": {
+                "color": "#C0392B"
+              }
+            },
+            "totalFill": {
+              "solid": {
+                "color": "#1F4E79"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

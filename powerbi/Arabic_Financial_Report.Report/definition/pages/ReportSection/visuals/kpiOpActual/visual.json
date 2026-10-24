@@ -3,11 +3,11 @@
   "name": "kpiOpActual",
   "position": {
     "x": 772,
-    "y": 104,
-    "z": 3,
-    "height": 116,
+    "y": 118,
+    "z": 13,
+    "height": 113,
     "width": 224,
-    "tabOrder": 3
+    "tabOrder": 13
   },
   "visual": {
     "visualType": "card",

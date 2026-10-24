@@ -3,11 +3,11 @@
   "name": "kpiOpBudget",
   "position": {
     "x": 528,
-    "y": 104,
-    "z": 4,
-    "height": 116,
+    "y": 118,
+    "z": 14,
+    "height": 113,
     "width": 224,
-    "tabOrder": 4
+    "tabOrder": 14
   },
   "visual": {
     "visualType": "card",

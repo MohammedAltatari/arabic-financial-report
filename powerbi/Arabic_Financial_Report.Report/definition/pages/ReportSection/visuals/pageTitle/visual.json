@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "pageTitle",
   "position": {
-    "x": 40,
-    "y": 12,
-    "z": 0,
-    "height": 48,
-    "width": 1200,
-    "tabOrder": 0
+    "x": 560,
+    "y": 10,
+    "z": 60,
+    "height": 46,
+    "width": 630,
+    "tabOrder": 60
   },
   "visual": {
     "visualType": "textbox",
@@ -22,7 +22,7 @@
                     "value": "الملخص التنفيذي: الموازنة مقابل الفعلي",
                     "textStyle": {
                       "fontSize": "20pt",
-                      "color": "#1F2937",
+                      "color": "#FFFFFF",
                       "fontWeight": "bold"
                     }
                   }

@@ -1,6 +1,99 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
-  "themeCollection": {},
+  "themeCollection": {
+    "customTheme": {
+      "name": "ArabicFinance.json",
+      "reportVersionAtImport": {
+        "visual": "2.14.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "ArabicFinance.json",
+          "path": "ArabicFinance.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "ico_arrows.png",
+          "path": "ico_arrows.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_arrowup.png",
+          "path": "ico_arrowup.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_bars.png",
+          "path": "ico_bars.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_cart.png",
+          "path": "ico_cart.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_coin.png",
+          "path": "ico_coin.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_gauge.png",
+          "path": "ico_gauge.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_h_is.png",
+          "path": "ico_h_is.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_h_summary.png",
+          "path": "ico_h_summary.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_h_va.png",
+          "path": "ico_h_va.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_h_wi.png",
+          "path": "ico_h_wi.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_percent.png",
+          "path": "ico_percent.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_target_or.png",
+          "path": "ico_target_or.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_target.png",
+          "path": "ico_target.png",
+          "type": "Image"
+        },
+        {
+          "name": "ico_trend.png",
+          "path": "ico_trend.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
   "settings": {
     "useEnhancedTooltips": false
   }

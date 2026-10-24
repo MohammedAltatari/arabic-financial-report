@@ -3,11 +3,11 @@
   "name": "wiCardVsBudget",
   "position": {
     "x": 320,
-    "y": 236,
-    "z": 7,
-    "height": 120,
+    "y": 242,
+    "z": 17,
+    "height": 118,
     "width": 290,
-    "tabOrder": 7
+    "tabOrder": 17
   },
   "visual": {
     "visualType": "card",

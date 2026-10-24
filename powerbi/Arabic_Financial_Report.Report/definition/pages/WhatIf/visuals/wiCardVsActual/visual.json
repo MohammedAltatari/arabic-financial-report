@@ -3,11 +3,11 @@
   "name": "wiCardVsActual",
   "position": {
     "x": 630,
-    "y": 236,
-    "z": 6,
-    "height": 120,
+    "y": 242,
+    "z": 16,
+    "height": 118,
     "width": 290,
-    "tabOrder": 6
+    "tabOrder": 16
   },
   "visual": {
     "visualType": "card",

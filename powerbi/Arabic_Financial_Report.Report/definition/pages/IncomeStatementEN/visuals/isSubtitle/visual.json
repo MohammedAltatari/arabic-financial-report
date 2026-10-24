@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "isSubtitle",
+  "position": {
+    "x": 90,
+    "y": 54,
+    "z": 61,
+    "height": 46,
+    "width": 550,
+    "tabOrder": 61
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Budget period: Dec 2010 – Nov 2011  |  Amounts in USD  |  Negatives in parentheses  |  Green = favorable, red = unfavorable",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#D6E4F0"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

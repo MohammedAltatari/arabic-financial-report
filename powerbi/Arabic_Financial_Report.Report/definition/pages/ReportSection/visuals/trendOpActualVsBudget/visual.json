@@ -3,11 +3,11 @@
   "name": "trendOpActualVsBudget",
   "position": {
     "x": 400,
-    "y": 240,
-    "z": 7,
-    "height": 440,
+    "y": 251,
+    "z": 17,
+    "height": 430,
     "width": 840,
-    "tabOrder": 7
+    "tabOrder": 17
   },
   "visual": {
     "visualType": "lineChart",

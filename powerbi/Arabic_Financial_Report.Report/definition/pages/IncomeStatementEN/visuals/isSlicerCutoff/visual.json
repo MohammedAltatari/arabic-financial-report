@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "isSlicerCutoff",
+  "position": {
+    "x": 894,
+    "y": 16,
+    "z": 70,
+    "height": 70,
+    "width": 220,
+    "tabOrder": 70
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Forecast Cutoff"
+                    }
+                  },
+                  "Property": "CutoffLabelEN"
+                }
+              },
+              "queryRef": "Forecast Cutoff.CutoffLabelEN",
+              "nativeQueryRef": "CutoffLabelEN",
+              "active": true,
+              "displayName": "Forecast cutoff month"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

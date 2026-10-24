@@ -3,11 +3,11 @@
   "name": "vaWaterfall",
   "position": {
     "x": 520,
-    "y": 110,
-    "z": 3,
-    "height": 590,
+    "y": 118,
+    "z": 13,
+    "height": 582,
     "width": 720,
-    "tabOrder": 3
+    "tabOrder": 13
   },
   "visual": {
     "visualType": "waterfallChart",
@@ -186,7 +186,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'   ‏جسر الربح التشغيلي: من الموازنة إلى الفعلي (بالآلاف)‏   '"
+                  "Value": "'   ‏مكوّنات انحراف الربح التشغيلي عن الموازنة (بالآلاف)‏   '"
                 }
               }
             },

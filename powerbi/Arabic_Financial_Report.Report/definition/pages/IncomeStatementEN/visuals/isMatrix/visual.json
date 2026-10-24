@@ -1,0 +1,679 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "isMatrix",
+  "position": {
+    "x": 40,
+    "y": 118,
+    "z": 14,
+    "height": 592,
+    "width": 1200,
+    "tabOrder": 14
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimAccount"
+                        }
+                      },
+                      "Hierarchy": "Income Statement EN"
+                    }
+                  },
+                  "Level": "Level 2"
+                }
+              },
+              "queryRef": "DimAccount.Income Statement EN.Level 2",
+              "nativeQueryRef": "Level 2",
+              "active": true,
+              "displayName": "Line item"
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimAccount"
+                        }
+                      },
+                      "Hierarchy": "Income Statement EN"
+                    }
+                  },
+                  "Level": "Level 3"
+                }
+              },
+              "queryRef": "DimAccount.Income Statement EN.Level 3",
+              "nativeQueryRef": "Level 3",
+              "active": true,
+              "displayName": "Line item"
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimAccount"
+                        }
+                      },
+                      "Hierarchy": "Income Statement EN"
+                    }
+                  },
+                  "Level": "Level 4"
+                }
+              },
+              "queryRef": "DimAccount.Income Statement EN.Level 4",
+              "nativeQueryRef": "Level 4",
+              "active": true,
+              "displayName": "Line item"
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimAccount"
+                        }
+                      },
+                      "Hierarchy": "Income Statement EN"
+                    }
+                  },
+                  "Level": "Level 5"
+                }
+              },
+              "queryRef": "DimAccount.Income Statement EN.Level 5",
+              "nativeQueryRef": "Level 5",
+              "active": true,
+              "displayName": "Line item"
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimAccount"
+                        }
+                      },
+                      "Hierarchy": "Income Statement EN"
+                    }
+                  },
+                  "Level": "Level 6"
+                }
+              },
+              "queryRef": "DimAccount.Income Statement EN.Level 6",
+              "nativeQueryRef": "Level 6",
+              "active": true,
+              "displayName": "Line item"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactFinance"
+                    }
+                  },
+                  "Property": "IS Actual"
+                }
+              },
+              "queryRef": "FactFinance.IS Actual",
+              "nativeQueryRef": "IS Actual",
+              "displayName": "Actual"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactFinance"
+                    }
+                  },
+                  "Property": "IS Budget"
+                }
+              },
+              "queryRef": "FactFinance.IS Budget",
+              "nativeQueryRef": "IS Budget",
+              "displayName": "Budget"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactFinance"
+                    }
+                  },
+                  "Property": "IS Variance"
+                }
+              },
+              "queryRef": "FactFinance.IS Variance",
+              "nativeQueryRef": "IS Variance",
+              "displayName": "Variance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactFinance"
+                    }
+                  },
+                  "Property": "IS Variance %"
+                }
+              },
+              "queryRef": "FactFinance.IS Variance %",
+              "nativeQueryRef": "IS Variance %",
+              "displayName": "Variance %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactFinance"
+                    }
+                  },
+                  "Property": "IS Rolling Forecast"
+                }
+              },
+              "queryRef": "FactFinance.IS Rolling Forecast",
+              "nativeQueryRef": "IS Rolling Forecast",
+              "displayName": "Rolling forecast"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DimAccount.Income Statement EN.Level 2"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DimAccount.Income Statement EN.Level 3"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DimAccount.Income Statement EN.Level 4"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DimAccount.Income Statement EN.Level 5"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DimAccount.Income Statement EN.Level 6"
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "isToggled": true
+        }
+      }
+    ],
+    "objects": {
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "rowSubtotalsPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            },
+            "rowSubtotalsLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Net income'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "stepped": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "steppedLayoutIndentation": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "showExpandCollapseButtons": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F3F4F6'"
+                    }
+                  }
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactFinance"
+                        }
+                      },
+                      "Property": "Color IS Variance"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "FactFinance.IS Variance"
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactFinance"
+                        }
+                      },
+                      "Property": "Color IS Variance"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "FactFinance.IS Variance %"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E5E7EB'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "37e6c08d42578fc017ef",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimAccount"
+                  }
+                },
+                "Hierarchy": "Income Statement EN"
+              }
+            },
+            "Level": "Level 1"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "85efde3544995bcc2435",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimAccount"
+                  }
+                },
+                "Hierarchy": "Income Statement EN"
+              }
+            },
+            "Level": "Level 2"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "08a1a88e064f729a4b16",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimAccount"
+                  }
+                },
+                "Hierarchy": "Income Statement EN"
+              }
+            },
+            "Level": "Level 3"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8e29f3992383ce864ec0",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimAccount"
+                  }
+                },
+                "Hierarchy": "Income Statement EN"
+              }
+            },
+            "Level": "Level 4"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6d3eb31519fc28a78059",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimAccount"
+                  }
+                },
+                "Hierarchy": "Income Statement EN"
+              }
+            },
+            "Level": "Level 5"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d06ae1fa79d7ff6c619b",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimAccount"
+                  }
+                },
+                "Hierarchy": "Income Statement EN"
+              }
+            },
+            "Level": "Level 6"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0d69a48af371ae5788f7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactFinance"
+              }
+            },
+            "Property": "IS Actual"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bb46eb4c1c41ece1e964",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactFinance"
+              }
+            },
+            "Property": "IS Budget"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d148179c481786730b81",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactFinance"
+              }
+            },
+            "Property": "IS Variance"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "948d444082a3bef245ec",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactFinance"
+              }
+            },
+            "Property": "IS Variance %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1e9926f7e8997ccc27ac",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactFinance"
+              }
+            },
+            "Property": "IS Rolling Forecast"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
