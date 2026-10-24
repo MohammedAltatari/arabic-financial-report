@@ -104,6 +104,67 @@ table FactFinance
 		displayFolder: 3. Forecast
 		lineageTag: 6d63692a-e71b-498d-86ac-2d06f99dc293
 
+	/// Actual from 1 January to the last date in context (calendar year).
+	measure 'Actual YTD' = CALCULATE ( [Actual], DATESYTD ( DimDate[Date] ) )
+		formatString: #,0;(#,0);-
+		displayFolder: 4. Time Intelligence
+		lineageTag: 45a50d8f-1eda-4a64-89da-8265ff137114
+
+	/// Actual for the same period last year.
+	measure 'Actual PY' = CALCULATE ( [Actual], SAMEPERIODLASTYEAR ( DimDate[Date] ) )
+		formatString: #,0;(#,0);-
+		displayFolder: 4. Time Intelligence
+		lineageTag: f7a7e83f-8527-4138-ba86-7255e36feed2
+
+	/// Actual - Actual PY. Blank when there is no prior-year data. Positive = better for profit.
+	measure 'YoY Change' =
+			VAR PY = [Actual PY]
+			RETURN
+			    IF ( NOT ISBLANK ( PY ), [Actual] - PY )
+		formatString: #,0;(#,0);-
+		displayFolder: 4. Time Intelligence
+		lineageTag: af7b1419-c59d-45f5-a1a0-d3df69269d12
+
+	/// YoY Change / ABS(Actual PY): positive = improvement (same sign rule as Variance).
+	measure 'YoY %' = DIVIDE ( [YoY Change], ABS ( [Actual PY] ) )
+		formatString: 0.0%;(0.0%);-
+		displayFolder: 4. Time Intelligence
+		lineageTag: d13bcdf4-f2d3-4957-bcab-4149abbd2b95
+
+	/// Actual YTD for the same period last year.
+	measure 'Actual YTD PY' = CALCULATE ( [Actual YTD], SAMEPERIODLASTYEAR ( DimDate[Date] ) )
+		formatString: #,0;(#,0);-
+		displayFolder: 4. Time Intelligence
+		lineageTag: e63eb26d-8bcd-4b87-8a29-aabc93cc240c
+
+	/// (Actual YTD - Actual YTD PY) / ABS(Actual YTD PY).
+	measure 'YTD YoY %' =
+			VAR PY = [Actual YTD PY]
+			RETURN
+			    IF ( NOT ISBLANK ( PY ), DIVIDE ( [Actual YTD] - PY, ABS ( PY ) ) )
+		formatString: 0.0%;(0.0%);-
+		displayFolder: 4. Time Intelligence
+		lineageTag: cbab09a0-4120-4404-bd11-2ccadbd12b52
+
+	/// Actual for the 12 months ending at the last date in context. Blank unless all 12 months have data.
+	measure 'Actual Rolling 12M' =
+			VAR Window =
+			    DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -12, MONTH )
+			VAR MonthsWithData =
+			    CALCULATE (
+			        DISTINCTCOUNT ( FactFinance[FinancePeriod] ),
+			        Window,
+			        REMOVEFILTERS ( DimAccount ),
+			        REMOVEFILTERS ( DimDepartment ),
+			        REMOVEFILTERS ( DimOrganization ),
+			        REMOVEFILTERS ( DimScenario )
+			    )
+			RETURN
+			    IF ( MonthsWithData = 12, CALCULATE ( [Actual], Window ) )
+		formatString: #,0;(#,0);-
+		displayFolder: 4. Time Intelligence
+		lineageTag: f3fb44fe-84c4-4b5d-82c7-91d01aea7ebc
+
 	column FinanceKey
 		dataType: int64
 		isHidden

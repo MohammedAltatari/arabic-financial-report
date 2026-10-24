@@ -1,0 +1,10 @@
+EVALUATE
+ROW (
+    "YTD Dec 2012", CALCULATE ( [Actual YTD], DimDate[YearMonthKey] = 201212 ),
+    "PY 2013", CALCULATE ( [Actual PY], DimDate[Year] = 2013 ),
+    "YoY % 2013", CALCULATE ( [YoY %], DimDate[Year] = 2013 ),
+    "YTD PY Dec 2013", CALCULATE ( [Actual YTD PY], DimDate[YearMonthKey] = 201312 ),
+    "R12M Dec 2011", CALCULATE ( [Actual Rolling 12M], DimDate[YearMonthKey] = 201112 ),
+    "R12M Dec 2012", CALCULATE ( [Actual Rolling 12M], DimDate[YearMonthKey] = 201212 ),
+    "R12M Oct 2011", CALCULATE ( [Actual Rolling 12M], DimDate[YearMonthKey] = 201110 )
+)
