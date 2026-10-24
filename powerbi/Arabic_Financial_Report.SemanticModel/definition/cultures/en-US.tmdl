@@ -23,6 +23,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "آخر شهر مُغلق للتوقع": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -58,6 +68,132 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "الموازنة": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.is_actual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "IS Actual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "الفعلي": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.is_budget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "IS Budget"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "الموازنة": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.is_variance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "IS Variance"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "الانحراف": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.is_variance_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "IS Variance %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "نسبة الانحراف (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.is_rolling_forecast": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "IS Rolling Forecast"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "التوقع المحدّث": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimdepartment.departmentnamear": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimDepartment",
+			          "ConceptualProperty": "DepartmentNameAR"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "القسم": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

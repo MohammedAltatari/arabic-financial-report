@@ -167,13 +167,18 @@ table FactFinance
 
 	/// TRUE when the matrix row is a repeated (ragged) level below the account's real depth. Used by all IS measures.
 	measure 'IS Hide Row' =
+			-- Deepest hierarchy level currently in scope (works whichever levels are placed on the rows)
 			VAR BrowseDepth =
-			        INT ( ISINSCOPE ( DimAccount[Level1AR] ) || ISINSCOPE ( DimAccount[Level1EN] ) ) +
-			        INT ( ISINSCOPE ( DimAccount[Level2AR] ) || ISINSCOPE ( DimAccount[Level2EN] ) ) +
-			        INT ( ISINSCOPE ( DimAccount[Level3AR] ) || ISINSCOPE ( DimAccount[Level3EN] ) ) +
-			        INT ( ISINSCOPE ( DimAccount[Level4AR] ) || ISINSCOPE ( DimAccount[Level4EN] ) ) +
-			        INT ( ISINSCOPE ( DimAccount[Level5AR] ) || ISINSCOPE ( DimAccount[Level5EN] ) ) +
-			        INT ( ISINSCOPE ( DimAccount[Level6AR] ) || ISINSCOPE ( DimAccount[Level6EN] ) )
+			    SWITCH (
+			        TRUE (),
+			        ISINSCOPE ( DimAccount[Level6AR] ) || ISINSCOPE ( DimAccount[Level6EN] ), 6,
+			        ISINSCOPE ( DimAccount[Level5AR] ) || ISINSCOPE ( DimAccount[Level5EN] ), 5,
+			        ISINSCOPE ( DimAccount[Level4AR] ) || ISINSCOPE ( DimAccount[Level4EN] ), 4,
+			        ISINSCOPE ( DimAccount[Level3AR] ) || ISINSCOPE ( DimAccount[Level3EN] ), 3,
+			        ISINSCOPE ( DimAccount[Level2AR] ) || ISINSCOPE ( DimAccount[Level2EN] ), 2,
+			        ISINSCOPE ( DimAccount[Level1AR] ) || ISINSCOPE ( DimAccount[Level1EN] ), 1,
+			        0
+			    )
 			VAR RowDepth = MAX ( DimAccount[AccountDepth] )
 			RETURN
 			    BrowseDepth > RowDepth
@@ -181,32 +186,32 @@ table FactFinance
 		displayFolder: 5. Income Statement
 		lineageTag: 9cedecec-e8bf-4e30-acc9-9785537b4039
 
-	/// [Actual] for the income statement matrix (hides repeated ragged-hierarchy rows).
-	measure 'IS Actual' = IF ( NOT [IS Hide Row], [Actual] )
+	/// [Actual (Budget Period)] for the income statement matrix (hides repeated ragged-hierarchy rows).
+	measure 'IS Actual' = IF ( NOT [IS Hide Row], [Actual (Budget Period)] )
 		formatString: #,0;(#,0);-
 		displayFolder: 5. Income Statement
 		lineageTag: 7c00d7ee-93a5-48a4-8752-531a8111f5ad
 
 	/// [Budget] for the income statement matrix (hides repeated ragged-hierarchy rows).
-	measure 'IS Budget' = IF ( NOT [IS Hide Row], [Budget] )
+	measure 'IS Budget' = IF ( NOT [IS Hide Row] && [IS In Budget Scope], [Budget] )
 		formatString: #,0;(#,0);-
 		displayFolder: 5. Income Statement
 		lineageTag: 6fc8cab1-3a5b-43fe-910b-90326466f211
 
 	/// [Rolling Forecast] for the income statement matrix (hides repeated ragged-hierarchy rows).
-	measure 'IS Rolling Forecast' = IF ( NOT [IS Hide Row], [Rolling Forecast] )
+	measure 'IS Rolling Forecast' = IF ( NOT [IS Hide Row] && [IS In Budget Scope], [Rolling Forecast] )
 		formatString: #,0;(#,0);-
 		displayFolder: 5. Income Statement
 		lineageTag: d729d61f-d6a9-4619-9edb-bba13425b1b6
 
 	/// [Variance] for the income statement matrix (hides repeated ragged-hierarchy rows).
-	measure 'IS Variance' = IF ( NOT [IS Hide Row], [Variance] )
+	measure 'IS Variance' = IF ( NOT [IS Hide Row] && [IS In Budget Scope], [Variance] )
 		formatString: #,0;(#,0);-
 		displayFolder: 5. Income Statement
 		lineageTag: 20c62698-09c3-47d3-8c52-fc5ada27bfc1
 
 	/// [Variance %] for the income statement matrix (hides repeated ragged-hierarchy rows).
-	measure 'IS Variance %' = IF ( NOT [IS Hide Row], [Variance %] )
+	measure 'IS Variance %' = IF ( NOT [IS Hide Row] && [IS In Budget Scope], [Variance %] )
 		formatString: 0.0%;(0.0%);-
 		displayFolder: 5. Income Statement
 		lineageTag: 10bb1881-1bb7-4b5b-8e14-144feb8193ce
@@ -276,6 +281,25 @@ table FactFinance
 		isHidden
 		displayFolder: 7. Formatting
 		lineageTag: bbaa1390-3e69-4d2a-aa85-9239776bbbf4
+
+	/// Font colour for [IS Variance] / [IS Variance %]: green when favorable (>= 0), red when unfavorable.
+	measure 'Color IS Variance' =
+			VAR v = [IS Variance]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), "#374151", v >= 0, "#1E8449", "#C0392B" )
+		isHidden
+		displayFolder: 7. Formatting
+		lineageTag: 6b0c3196-c6d2-49de-b2b9-3ab8b07a4fa4
+
+	/// TRUE when every account in the current row lies under Operating Profit - the only part of the income statement that has a budget.
+	/// Rows that include Other Income/Expense or Taxes (and Net Income) show Actual only, so Actual is never compared with a budget that excludes those lines.
+	measure 'IS In Budget Scope' =
+			ISEMPTY (
+			    FILTER ( VALUES ( DimAccount[Level2EN] ), DimAccount[Level2EN] <> "Operating Profit" )
+			)
+		isHidden
+		displayFolder: 5. Income Statement
+		lineageTag: e1b3c50f-9311-4391-9ea8-2f697b09eac8
 
 	column FinanceKey
 		dataType: int64
