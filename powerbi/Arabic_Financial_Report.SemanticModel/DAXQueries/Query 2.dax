@@ -1,0 +1,13 @@
+EVALUATE
+VAR OP = FILTER ( ALL ( DimAccount[SectionOrder] ), DimAccount[SectionOrder] IN { 1, 2, 3 } )
+RETURN
+    ROW (
+        "OP Actual (Budget Period)", CALCULATE ( [Actual (Budget Period)], OP ),
+        "OP Budget", CALCULATE ( [Budget], OP ),
+        "OP Variance", CALCULATE ( [Variance], OP ),
+        "OP Variance %", CALCULATE ( [Variance %], OP ),
+        "Net Income 2012", CALCULATE ( [Actual], DimDate[Year] = 2012 ),
+        "OP Forecast (cutoff May 2011)", CALCULATE ( [Rolling Forecast], OP ),
+        "OP Forecast (cutoff Nov 2011)", CALCULATE ( [Rolling Forecast], OP, TREATAS ( { 201111 }, 'Forecast Cutoff'[CutoffKey] ) ),
+        "Cutoff months", COUNTROWS ( 'Forecast Cutoff' )
+    )

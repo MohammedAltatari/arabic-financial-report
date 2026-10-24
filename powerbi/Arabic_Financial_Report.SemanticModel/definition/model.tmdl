@@ -10,7 +10,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["ServerName","DatabaseName","FactFinance","DimAccount","DimDepartment","DimOrganization","DimScenario","DimDate"]
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
 
 ref table FactFinance
 ref table DimAccount
@@ -18,4 +18,5 @@ ref table DimDepartment
 ref table DimOrganization
 ref table DimScenario
 ref table DimDate
+ref table 'Forecast Cutoff'
 

@@ -1,6 +1,109 @@
 table FactFinance
 	lineageTag: 019d620f-77a6-4a01-ab8f-0216afafaccd
 
+	/// Actual amount in USD, signed (revenue +, costs -).
+	measure Actual =
+			CALCULATE (
+			    SUM ( FactFinance[SignedAmountUSD] ),
+			    DimScenario[ScenarioNameEN] = "Actual"
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 1. Core
+		lineageTag: c9ac38fe-e506-41f5-bd1a-1bfa20802504
+
+	/// Budget amount in USD, signed (revenue +, costs -).
+	measure Budget =
+			CALCULATE (
+			    SUM ( FactFinance[SignedAmountUSD] ),
+			    DimScenario[ScenarioNameEN] = "Budget"
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 1. Core
+		lineageTag: 6dea5272-f6a6-43cd-af3b-517c839887f2
+
+	/// Actual only for months that have a company budget (Dec 2010 - Nov 2011), regardless of account/department/branch filters.
+	measure 'Actual (Budget Period)' =
+			SUMX (
+			    VALUES ( DimDate[YearMonthKey] ),
+			    IF (
+			        NOT ISBLANK (
+			            CALCULATE (
+			                [Budget],
+			                ALL ( DimAccount ),
+			                ALL ( DimDepartment ),
+			                ALL ( DimOrganization )
+			            )
+			        ),
+			        [Actual]
+			    )
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 1. Core
+		lineageTag: caeeeeb4-92de-4ade-afae-d342216ea42b
+
+	/// Actual - Budget. Positive = Favorable, negative = Unfavorable (same rule for all lines).
+	measure Variance =
+			IF (
+			    NOT ISBLANK ( [Budget] ),
+			    [Actual (Budget Period)] - [Budget]
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 2. Variance
+		lineageTag: 2078357d-8481-49bf-97a8-e91f059a569c
+
+	/// Variance / ABS(Budget), so the sign is not flipped for negative expense lines.
+	measure 'Variance %' = DIVIDE ( [Variance], ABS ( [Budget] ) )
+		formatString: 0.0%;(0.0%);-
+		displayFolder: 2. Variance
+		lineageTag: 441f5701-0333-4b83-b3d0-43178ae374c3
+
+	/// Last closed month (YYYYMM) chosen in the 'Forecast Cutoff' slicer. Default: May 2011.
+	measure 'Forecast Cutoff Key' = SELECTEDVALUE ( 'Forecast Cutoff'[CutoffKey], 201105 )
+		formatString: 0
+		displayFolder: 3. Forecast
+		lineageTag: 20199f4f-6edc-4b7a-9ac8-bee762e5eda0
+
+	/// Calculated forecast for the budget year: Actual for closed months (<= cutoff) + Budget for remaining months.
+	measure 'Rolling Forecast' =
+			VAR CutoffKey = [Forecast Cutoff Key]
+			RETURN
+			    SUMX (
+			        VALUES ( DimDate[YearMonthKey] ),
+			        VAR HasBudget =
+			            NOT ISBLANK (
+			                CALCULATE (
+			                    [Budget],
+			                    ALL ( DimAccount ),
+			                    ALL ( DimDepartment ),
+			                    ALL ( DimOrganization )
+			                )
+			            )
+			        RETURN
+			            IF (
+			                HasBudget,
+			                IF ( DimDate[YearMonthKey] <= CutoffKey, [Actual], [Budget] )
+			            )
+			    )
+		formatString: #,0;(#,0);-
+		displayFolder: 3. Forecast
+		lineageTag: ee014a62-5e11-4e01-8c11-11bf7b2dd4bd
+
+	/// Rolling Forecast - Budget: expected full-year gap vs plan. Positive = Favorable.
+	measure 'Forecast Variance' =
+			IF (
+			    NOT ISBLANK ( [Budget] ),
+			    [Rolling Forecast] - [Budget]
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 3. Forecast
+		lineageTag: b9f1c66f-5f82-4c60-bbcf-d7646df97e73
+
+	/// Forecast Variance / ABS(Budget).
+	measure 'Forecast Variance %' = DIVIDE ( [Forecast Variance], ABS ( [Budget] ) )
+		formatString: 0.0%;(0.0%);-
+		displayFolder: 3. Forecast
+		lineageTag: 6d63692a-e71b-498d-86ac-2d06f99dc293
+
 	column FinanceKey
 		dataType: int64
 		isHidden

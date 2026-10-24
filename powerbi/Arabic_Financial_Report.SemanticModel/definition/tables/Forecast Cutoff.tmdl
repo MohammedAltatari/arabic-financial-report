@@ -1,0 +1,69 @@
+table 'Forecast Cutoff'
+	lineageTag: 899bc685-a7df-43bd-b51b-52a4af6f72f4
+
+	column CutoffKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a46e24d5-e012-41fe-99e6-890c9e4a4eca
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CutoffKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column CutoffMonth
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: abf26560-3d3a-43f6-b11a-eaad434d6564
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CutoffMonth]
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column CutoffLabelEN
+		dataType: string
+		lineageTag: 4d1c1ed7-1a0a-48de-a2f7-7c411d2bdb94
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CutoffLabelEN]
+		sortByColumn: CutoffKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CutoffLabelAR
+		dataType: string
+		lineageTag: 4bd5633e-8605-4778-8836-7efeafb84be9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [CutoffLabelAR]
+		sortByColumn: CutoffKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Forecast Cutoff' = calculated
+		mode: import
+		source =
+				-- One row per month that has a company budget (derived from the data, not hard-coded)
+				VAR BudgetMonths =
+				    CALCULATETABLE (
+				        SUMMARIZE ( FactFinance, DimDate[MonthStart] ),
+				        DimScenario[ScenarioNameEN] = "Budget"
+				    )
+				RETURN
+				    SELECTCOLUMNS (
+				        BudgetMonths,
+				        "CutoffKey", YEAR ( DimDate[MonthStart] ) * 100 + MONTH ( DimDate[MonthStart] ),
+				        "CutoffMonth", DimDate[MonthStart],
+				        "CutoffLabelEN", FORMAT ( DimDate[MonthStart], "mmm yyyy" ),
+				        "CutoffLabelAR",
+				            SWITCH ( MONTH ( DimDate[MonthStart] ), 1, "يناير", 2, "فبراير", 3, "مارس", 4, "أبريل", 5, "مايو", 6, "يونيو", 7, "يوليو", 8, "أغسطس", 9, "سبتمبر", 10, "أكتوبر", 11, "نوفمبر", 12, "ديسمبر" )
+				                & " " & YEAR ( DimDate[MonthStart] )
+				    )
+
+	annotation PBI_Id = 77c59fa9f99d498994628edd02daed69
+
