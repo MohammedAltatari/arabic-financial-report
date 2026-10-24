@@ -20,6 +20,9 @@ ref table DimScenario
 ref table DimDate
 ref table 'Forecast Cutoff'
 ref table 'Variance Bridge'
+ref table 'WI Sales Change'
+ref table 'WI Opex Change'
+ref table 'WI Lines'
 
 ref cultureInfo en-US
 

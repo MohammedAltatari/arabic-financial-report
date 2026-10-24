@@ -1,0 +1,26 @@
+table 'WI Sales Change'
+	lineageTag: b9915fc5-065c-4cc7-9c76-7251ec7b41a2
+
+	column 'Sales Change %'
+		dataType: int64
+		formatString: 0
+		lineageTag: 22d9a1c6-9390-48f0-872f-09597f32918a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sales Change %]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'WI Sales Change' = calculated
+		mode: import
+		source =
+				-- What-if parameter: change in sales volume, in percent (-20 .. +20)
+				SELECTCOLUMNS ( GENERATESERIES ( -20, 20, 1 ), "Sales Change %", [Value] )
+
+	annotation PBI_Id = a58f404fcfcb4041813b5a11533109a0
+

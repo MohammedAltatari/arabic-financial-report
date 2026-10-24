@@ -1,0 +1,61 @@
+table 'WI Lines'
+	lineageTag: 5591481b-aa94-4d85-819f-8385e30cfd30
+
+	column LineKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 87042323-8b55-4be4-bb2b-e9e431b7594c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [LineKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineSort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8ab1e60b-c7e6-4b02-8cff-1aeb96491873
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [LineSort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineAR
+		dataType: string
+		lineageTag: fd018a3a-3966-4e63-8bda-215d2bd930bb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [LineAR]
+		sortByColumn: LineSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineEN
+		dataType: string
+		lineageTag: 52147441-eac1-4eb0-8034-378dc9c8e327
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [LineEN]
+		sortByColumn: LineSort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'WI Lines' = calculated
+		mode: import
+		source =
+				-- Rows of the what-if comparison table
+				DATATABLE (
+				    "LineKey", INTEGER, "LineSort", INTEGER, "LineAR", STRING, "LineEN", STRING,
+				    {
+				        { 1, 1, "صافي المبيعات", "Net Sales" },
+				        { 2, 2, "تكلفة المبيعات", "Cost of Sales" },
+				        { 3, 3, "المصاريف التشغيلية", "Operating Expenses" },
+				        { 4, 4, "الربح التشغيلي", "Operating Profit" }
+				    }
+				)
+
+	annotation PBI_Id = 054eb3f0d919413d80471e3d2a9d0014
+

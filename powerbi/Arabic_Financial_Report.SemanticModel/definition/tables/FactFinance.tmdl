@@ -339,6 +339,117 @@ table FactFinance
 		displayFolder: 7. Formatting
 		lineageTag: bf417f67-002d-4579-89f7-6c10b406f65e
 
+	/// Selected sales-volume change (default 0%). Cost of sales moves with sales (variable cost).
+	measure 'WI Sales Change' = SELECTEDVALUE ( 'WI Sales Change'[Sales Change %], 0 ) / 100
+		formatString: 0%;-0%;0%
+		displayFolder: 9. What-if
+		lineageTag: e67f9a36-cf23-4bcc-8fcd-225a9d25513f
+
+	/// Selected operating-expense change (default 0%).
+	measure 'WI Opex Change' = SELECTEDVALUE ( 'WI Opex Change'[Opex Change %], 0 ) / 100
+		formatString: 0%;-0%;0%
+		displayFolder: 9. What-if
+		lineageTag: e331e67a-e4c5-463f-ba3e-c507dc259c11
+
+	/// Actual net sales, budget months (account 50).
+	measure 'WI Net Sales Base' = CALCULATE ( [Actual (Budget Period)], DimAccount[Level4Key] = 50 )
+		formatString: #,0;(#,0);-
+		isHidden
+		displayFolder: 9. What-if
+		lineageTag: c9cd8325-08ba-4d78-9be3-5285f88162c9
+
+	/// Actual cost of sales, budget months (account 55, negative).
+	measure 'WI Cost of Sales Base' = CALCULATE ( [Actual (Budget Period)], DimAccount[Level4Key] = 55 )
+		formatString: #,0;(#,0);-
+		isHidden
+		displayFolder: 9. What-if
+		lineageTag: d35e4af1-f469-453a-9775-f4869bcf6e56
+
+	/// Actual operating expenses, budget months (account 58, negative).
+	measure 'WI Opex Base' = CALCULATE ( [Actual (Budget Period)], DimAccount[Level3Key] = 58 )
+		formatString: #,0;(#,0);-
+		isHidden
+		displayFolder: 9. What-if
+		lineageTag: 690a6e32-2179-4add-8a88-022ef48329f7
+
+	/// Simulated operating profit = (net sales + cost of sales) x (1 + sales change) + operating expenses x (1 + opex change).
+	measure 'WI Operating Profit' =
+			( [WI Net Sales Base] + [WI Cost of Sales Base] ) * ( 1 + [WI Sales Change] )
+			    + [WI Opex Base] * ( 1 + [WI Opex Change] )
+		formatString: #,0;(#,0);-
+		displayFolder: 9. What-if
+		lineageTag: 1b103238-fe7a-4369-baa3-1f35c2f6d8ea
+
+	/// Simulated operating profit - actual operating profit.
+	measure 'WI vs Actual' = [WI Operating Profit] - [OP Actual]
+		formatString: #,0;(#,0);-
+		displayFolder: 9. What-if
+		lineageTag: 3e64fa7f-1c45-4227-b37c-46faf069034b
+
+	/// Simulated operating profit - budgeted operating profit. Positive = the scenario beats the budget.
+	measure 'WI vs Budget' = [WI Operating Profit] - [OP Budget]
+		formatString: #,0;(#,0);-
+		displayFolder: 9. What-if
+		lineageTag: 187f52f9-72ce-473f-94ea-0fcded86e9c0
+
+	/// Sales-volume change needed to reach the budgeted operating profit, given the selected opex change.
+	measure 'WI Required Sales Change' =
+			DIVIDE (
+			    [OP Budget] - [WI Opex Base] * ( 1 + [WI Opex Change] ),
+			    [WI Net Sales Base] + [WI Cost of Sales Base]
+			) - 1
+		formatString: 0.0%;(0.0%);0.0%
+		displayFolder: 9. What-if
+		lineageTag: 18c7c444-87fe-4a93-9252-ad7030cd2ef2
+
+	/// Actual value for the row of 'WI Lines'.
+	measure 'WI Line Actual' =
+			SWITCH (
+			    SELECTEDVALUE ( 'WI Lines'[LineKey] ),
+			    1, [WI Net Sales Base],
+			    2, [WI Cost of Sales Base],
+			    3, [WI Opex Base],
+			    4, [OP Actual]
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 9. What-if
+		lineageTag: 87caa796-5f6c-44dc-b5ed-529c65398942
+
+	/// Simulated value for the row of 'WI Lines'.
+	measure 'WI Line Simulated' =
+			SWITCH (
+			    SELECTEDVALUE ( 'WI Lines'[LineKey] ),
+			    1, [WI Net Sales Base] * ( 1 + [WI Sales Change] ),
+			    2, [WI Cost of Sales Base] * ( 1 + [WI Sales Change] ),
+			    3, [WI Opex Base] * ( 1 + [WI Opex Change] ),
+			    4, [WI Operating Profit]
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 9. What-if
+		lineageTag: 1940ea56-5476-45db-a941-b960c02d5134
+
+	/// Budget value for the row of 'WI Lines'.
+	measure 'WI Line Budget' =
+			SWITCH (
+			    SELECTEDVALUE ( 'WI Lines'[LineKey] ),
+			    1, CALCULATE ( [Budget], DimAccount[Level4Key] = 50 ),
+			    2, CALCULATE ( [Budget], DimAccount[Level4Key] = 55 ),
+			    3, CALCULATE ( [Budget], DimAccount[Level3Key] = 58 ),
+			    4, [OP Budget]
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 9. What-if
+		lineageTag: 7d0e8d9a-ce38-4009-b856-64b26aa5c147
+
+	/// Font colour for [WI vs Budget]: green when the scenario reaches the budget, red otherwise.
+	measure 'Color WI vs Budget' =
+			VAR v = [WI vs Budget]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), "#374151", v >= 0, "#1E8449", "#C0392B" )
+		isHidden
+		displayFolder: 7. Formatting
+		lineageTag: f33d9b67-21f1-4f9e-b44a-7f0aa5d35934
+
 	column FinanceKey
 		dataType: int64
 		isHidden

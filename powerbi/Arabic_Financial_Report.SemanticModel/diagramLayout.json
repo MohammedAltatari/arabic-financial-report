@@ -111,6 +111,45 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1511.0444182271151,
+            "y": 364.6139551649627
+          },
+          "nodeIndex": "WI Lines",
+          "nodeLineageTag": "5591481b-aa94-4d85-819f-8385e30cfd30",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1795.0444182271151,
+            "y": 352.6139551649627
+          },
+          "nodeIndex": "WI Opex Change",
+          "nodeLineageTag": "cdbd2244-a2fb-4ee3-a647-301432e30144",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2079.0444182271149,
+            "y": 352.6139551649627
+          },
+          "nodeIndex": "WI Sales Change",
+          "nodeLineageTag": "b9915fc5-065c-4cc7-9c76-7251ec7b41a2",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

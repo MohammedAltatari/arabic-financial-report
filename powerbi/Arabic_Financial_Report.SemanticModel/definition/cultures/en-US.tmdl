@@ -329,6 +329,132 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "factfinance.wi_line_actual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "WI Line Actual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "الفعلي": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.wi_line_simulated": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "WI Line Simulated"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "المحاكى": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.wi_line_budget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "WI Line Budget"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "الموازنة": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "wi_lines.linear": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "WI Lines",
+			          "ConceptualProperty": "LineAR"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "البند": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "wi_opex_change.opex_change_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "WI Opex Change",
+			          "ConceptualProperty": "Opex Change %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "تغيير المصاريف التشغيلية (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "wi_sales_change.sales_change_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "WI Sales Change",
+			          "ConceptualProperty": "Sales Change %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "تغيير حجم المبيعات (%)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  }
 			}

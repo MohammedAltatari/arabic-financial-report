@@ -1,0 +1,26 @@
+table 'WI Opex Change'
+	lineageTag: cdbd2244-a2fb-4ee3-a647-301432e30144
+
+	column 'Opex Change %'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0783e0f0-b901-443e-935f-5c8c0d789920
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Opex Change %]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'WI Opex Change' = calculated
+		mode: import
+		source =
+				-- What-if parameter: change in operating expenses, in percent (-20 .. +20)
+				SELECTCOLUMNS ( GENERATESERIES ( -20, 20, 1 ), "Opex Change %", [Value] )
+
+	annotation PBI_Id = 67ed2ae2bdd0418daddcaef4a3e75234
+
