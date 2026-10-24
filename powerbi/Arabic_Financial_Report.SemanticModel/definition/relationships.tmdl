@@ -1,0 +1,20 @@
+relationship bec07ff7-2710-4436-b7c6-b5775d2f1747
+	fromColumn: FactFinance.FinancePeriod
+	toColumn: DimDate.Date
+
+relationship 6e9ca061-4ec9-4c15-b569-861158dd7d10
+	fromColumn: FactFinance.AccountKey
+	toColumn: DimAccount.AccountKey
+
+relationship 4719317c-5e4e-4f28-9bbe-aad649e8090e
+	fromColumn: FactFinance.DepartmentGroupKey
+	toColumn: DimDepartment.DepartmentGroupKey
+
+relationship e886880e-51fb-4076-870d-e28d1b210fcd
+	fromColumn: FactFinance.OrganizationKey
+	toColumn: DimOrganization.OrganizationKey
+
+relationship da120559-3d22-4367-8422-92843ae96ed8
+	fromColumn: FactFinance.ScenarioKey
+	toColumn: DimScenario.ScenarioKey
+

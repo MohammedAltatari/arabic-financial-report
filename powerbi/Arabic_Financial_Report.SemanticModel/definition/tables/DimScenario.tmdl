@@ -1,0 +1,40 @@
+table DimScenario
+	lineageTag: e6d36649-a958-4689-aac3-4567f69ae3a3
+
+	column ScenarioKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f5f73aef-a27a-4127-bc3e-cb483783a90b
+		summarizeBy: none
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioNameEN
+		dataType: string
+		lineageTag: 6c41730c-09ab-4410-8009-6b015e84c45e
+		summarizeBy: none
+		sourceColumn: ScenarioNameEN
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioNameAR
+		dataType: string
+		lineageTag: cce3f06a-4878-4a1b-b37e-aadeb0ac87e0
+		summarizeBy: none
+		sourceColumn: ScenarioNameAR
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimScenario = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DatabaseName),
+				    Data = Source{[Schema="rpt", Item="vw_DimScenario"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

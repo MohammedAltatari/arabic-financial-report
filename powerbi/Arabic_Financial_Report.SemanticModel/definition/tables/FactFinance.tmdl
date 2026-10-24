@@ -1,0 +1,126 @@
+table FactFinance
+	lineageTag: 019d620f-77a6-4a01-ab8f-0216afafaccd
+
+	column FinanceKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 361f43c1-73cd-41f2-9ae7-1715d42b0464
+		summarizeBy: none
+		sourceColumn: FinanceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OriginalDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d28552ac-f966-41e1-a7e1-03ddd7f0881d
+		summarizeBy: none
+		sourceColumn: OriginalDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinancePeriod
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 483ca6ee-bcb9-4eaa-9784-5f8b79a17f3f
+		summarizeBy: none
+		sourceColumn: FinancePeriod
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5a8d201d-d1ea-4009-b5f4-93d6994aaf66
+		summarizeBy: none
+		sourceColumn: ScenarioKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f6f4d7b2-44f2-4ca1-a78a-ba6cf06d50e7
+		summarizeBy: none
+		sourceColumn: OrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentGroupKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 36cd2a56-11ad-4571-aafe-9737d431e03a
+		summarizeBy: none
+		sourceColumn: DepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4ac63eb8-854e-44d1-b9fc-f9fc6ac91e26
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AmountLocal
+		dataType: double
+		isHidden
+		formatString: #,0
+		lineageTag: 8b936cc0-c80b-44d6-b7d8-215022137d1b
+		summarizeBy: sum
+		sourceColumn: AmountLocal
+
+		annotation SummarizationSetBy = Automatic
+
+	column RateToUSD
+		dataType: double
+		isHidden
+		formatString: #,0
+		lineageTag: f7365ab2-1a80-405f-a94f-a314cb6d088e
+		summarizeBy: sum
+		sourceColumn: RateToUSD
+
+		annotation SummarizationSetBy = Automatic
+
+	column AmountUSD
+		dataType: double
+		isHidden
+		formatString: #,0
+		lineageTag: e4c4e977-7497-48d4-9148-cf024472ead1
+		summarizeBy: sum
+		sourceColumn: AmountUSD
+
+		annotation SummarizationSetBy = Automatic
+
+	column SignedAmountUSD
+		dataType: double
+		isHidden
+		formatString: #,0
+		lineageTag: d85bea09-5777-453c-b21a-5565cfe7b408
+		summarizeBy: sum
+		sourceColumn: SignedAmountUSD
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactFinance = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DatabaseName),
+				    Data = Source{[Schema="rpt", Item="vw_FactFinance"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

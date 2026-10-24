@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 809.00381776974712,
+            "y": 481.22501343567416
+          },
+          "nodeIndex": "DimAccount",
+          "nodeLineageTag": "d3de2fc9-2b19-4fff-b537-832a3ee34d31",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 348.7801799913758,
+            "y": 555.22791032992541
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "88e04226-498a-4a4a-b85a-3cd55b880401",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 809.0444182271151,
+            "y": 90.5081162279406
+          },
+          "nodeIndex": "DimDepartment",
+          "nodeLineageTag": "9f695939-968c-4a60-a114-a80c15c9f62e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 275.1044197785244,
+            "y": -50
+          },
+          "nodeIndex": "DimOrganization",
+          "nodeLineageTag": "9611bc4b-5c34-4fea-b30b-4207dcd7c8f3",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 202.4685206972631
+          },
+          "nodeIndex": "DimScenario",
+          "nodeLineageTag": "e6d36649-a958-4689-aac3-4567f69ae3a3",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 521.99105417751593,
+            "y": 201.52237448247979
+          },
+          "nodeIndex": "FactFinance",
+          "nodeLineageTag": "019d620f-77a6-4a01-ab8f-0216afafaccd",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

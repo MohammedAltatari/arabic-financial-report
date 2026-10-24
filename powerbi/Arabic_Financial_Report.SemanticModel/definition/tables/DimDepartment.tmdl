@@ -1,0 +1,50 @@
+table DimDepartment
+	lineageTag: 9f695939-968c-4a60-a114-a80c15c9f62e
+
+	column DepartmentGroupKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 21fcbeb6-add4-44d4-bf9d-05d03f1faaba
+		summarizeBy: none
+		sourceColumn: DepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentDepartmentGroupKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4968bccb-0610-449a-a465-e189091a3199
+		summarizeBy: none
+		sourceColumn: ParentDepartmentGroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentNameEN
+		dataType: string
+		lineageTag: 2e018f8a-2ac2-4190-b422-72bc174e7bff
+		summarizeBy: none
+		sourceColumn: DepartmentNameEN
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentNameAR
+		dataType: string
+		lineageTag: d3d9d919-a66f-4a50-8474-dc05fbd8e40c
+		summarizeBy: none
+		sourceColumn: DepartmentNameAR
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDepartment = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DatabaseName),
+				    Data = Source{[Schema="rpt", Item="vw_DimDepartment"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Arabic_Financial_Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7982a635-0a1a-4f91-bd4d-f4a247f854d7"
+  }
+}

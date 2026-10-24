@@ -1,0 +1,142 @@
+table DimDate
+	lineageTag: 88e04226-498a-4a4a-b85a-3cd55b880401
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: 8c31bdba-9ee3-4684-8676-c8cf5d65e8ae
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ded2cc2-e953-447e-9672-96a162bcab88
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNumber
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c1374cd3-d17c-43ad-9be4-66cdbfadadc5
+		summarizeBy: none
+		sourceColumn: QuarterNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterEN
+		dataType: string
+		lineageTag: cdf5fffe-4f68-4226-8ddd-7bbcfbdd561c
+		summarizeBy: none
+		sourceColumn: QuarterEN
+		sortByColumn: QuarterNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterAR
+		dataType: string
+		lineageTag: ef88495e-0ccc-4d82-840e-3adba3d9b14e
+		summarizeBy: none
+		sourceColumn: QuarterAR
+		sortByColumn: QuarterNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e6d2580b-65ba-4f50-8bec-7c7034b04e80
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNameEN
+		dataType: string
+		lineageTag: 89fb31be-87fa-4243-a09a-79b926b9df81
+		summarizeBy: none
+		sourceColumn: MonthNameEN
+		sortByColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthShortEN
+		dataType: string
+		lineageTag: 0604b4b2-a5c4-4a42-9e38-81aca45b3668
+		summarizeBy: none
+		sourceColumn: MonthShortEN
+		sortByColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNameAR
+		dataType: string
+		lineageTag: 45d115c0-0b5d-4ee8-a5e8-51e63d4a8c47
+		summarizeBy: none
+		sourceColumn: MonthNameAR
+		sortByColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1f2314a2-5d20-4618-8659-b1788529284c
+		summarizeBy: none
+		sourceColumn: YearMonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthYearEN
+		dataType: string
+		lineageTag: b82e7d64-7336-4a17-9f4c-d02c9ca59a25
+		summarizeBy: none
+		sourceColumn: MonthYearEN
+		sortByColumn: YearMonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthStart
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: e8fee620-05ca-443d-b150-24fdd6fd8b94
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsMonthStart
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2654f541-92a3-4cd4-9f9b-9a2548fe0039
+		summarizeBy: none
+		sourceColumn: IsMonthStart
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DatabaseName),
+				    Data = Source{[Schema="rpt", Item="vw_DimDate"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

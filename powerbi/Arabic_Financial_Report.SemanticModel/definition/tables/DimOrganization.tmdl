@@ -1,0 +1,58 @@
+table DimOrganization
+	lineageTag: 9611bc4b-5c34-4fea-b30b-4207dcd7c8f3
+
+	column OrganizationKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1269f84c-fc4e-4ebe-ae98-c3a6be14d4ff
+		summarizeBy: none
+		sourceColumn: OrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentOrganizationKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 43dbc525-1849-4c36-a36f-3ecff574c809
+		summarizeBy: none
+		sourceColumn: ParentOrganizationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationNameEN
+		dataType: string
+		lineageTag: 9d3f5adf-f3c3-47ad-84eb-77b93c7f06c2
+		summarizeBy: none
+		sourceColumn: OrganizationNameEN
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationNameAR
+		dataType: string
+		lineageTag: db571b31-2abc-4cb2-8ce6-bd6dd7178030
+		summarizeBy: none
+		sourceColumn: OrganizationNameAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyCode
+		dataType: string
+		lineageTag: e6550253-ddad-475c-a9e4-073569a100db
+		summarizeBy: none
+		sourceColumn: CurrencyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimOrganization = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DatabaseName),
+				    Data = Source{[Schema="rpt", Item="vw_DimOrganization"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

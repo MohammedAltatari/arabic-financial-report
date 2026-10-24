@@ -1,0 +1,157 @@
+table DimAccount
+	lineageTag: d3de2fc9-2b19-4fff-b537-832a3ee34d31
+
+	column AccountKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8a8dccd9-7934-46b4-bc29-0159eb4b31fa
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentAccountKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2191b29d-7205-4b4a-9cbd-1bb6b370fbe5
+		summarizeBy: none
+		sourceColumn: ParentAccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountNameEN
+		dataType: string
+		lineageTag: 977bd242-2235-4eb7-a8e7-be7938bf3a2f
+		summarizeBy: none
+		sourceColumn: AccountNameEN
+		sortByColumn: AccountSortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountNameAR
+		dataType: string
+		lineageTag: c9b61096-28f5-4937-b272-5529e1433435
+		summarizeBy: none
+		sourceColumn: AccountNameAR
+		sortByColumn: AccountSortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountLevel
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4a6bb838-c526-43cf-ace9-0d57a0fe98de
+		summarizeBy: none
+		sourceColumn: AccountLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Operator
+		dataType: string
+		isHidden
+		lineageTag: 9a246457-e41c-475c-b378-de11806554e9
+		summarizeBy: none
+		sourceColumn: Operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column EffectiveSign
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7188fa7f-c2a7-4406-a6ca-2a76ae557e53
+		summarizeBy: none
+		sourceColumn: EffectiveSign
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsLeaf
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b0bd097e-0efb-4569-af13-a14dec0f9098
+		summarizeBy: none
+		sourceColumn: IsLeaf
+
+		annotation SummarizationSetBy = Automatic
+
+	column SectionEN
+		dataType: string
+		lineageTag: efe6a5f5-3ace-4f0f-915c-55be27ca1c1b
+		summarizeBy: none
+		sourceColumn: SectionEN
+		sortByColumn: SectionOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column SectionAR
+		dataType: string
+		lineageTag: e8b07bc5-315d-4f10-af91-367b1c27c67a
+		summarizeBy: none
+		sourceColumn: SectionAR
+		sortByColumn: SectionOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column SectionOrder
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ca9d69c1-ebe5-40aa-bb4c-12d8df3230e9
+		summarizeBy: none
+		sourceColumn: SectionOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountSortOrder
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 27f283ee-44f8-4a9d-8a52-c91c7286355e
+		summarizeBy: none
+		sourceColumn: AccountSortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupEN
+		dataType: string
+		lineageTag: e3439e58-f618-4ab9-b1a9-27e2c690abee
+		summarizeBy: none
+		sourceColumn: GroupEN
+		sortByColumn: GroupOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupAR
+		dataType: string
+		lineageTag: 599f8382-2bbb-4a13-be52-11e0da350454
+		summarizeBy: none
+		sourceColumn: GroupAR
+		sortByColumn: GroupOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupOrder
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ae0bc2a4-cf84-4c5e-883f-2de2352153fd
+		summarizeBy: none
+		sourceColumn: GroupOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimAccount = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(ServerName, DatabaseName),
+				    Data = Source{[Schema="rpt", Item="vw_DimAccount"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

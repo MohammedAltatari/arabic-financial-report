@@ -1,0 +1,10 @@
+expression ServerName = "localhost\SQLEXPRESS" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 01e1878e-2095-45f1-8833-5b6547b50d2a
+
+	annotation PBI_ResultType = Text
+
+expression DatabaseName = "AdventureWorksDW2022" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: c9749d4d-e972-4fb0-895e-ca7df3e27419
+
+	annotation PBI_ResultType = Text
+
