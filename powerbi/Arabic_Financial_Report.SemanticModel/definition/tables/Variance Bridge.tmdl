@@ -1,0 +1,71 @@
+table 'Variance Bridge'
+	lineageTag: fda6f3e5-b0aa-4b9c-bb68-fbb3c5b978a9
+
+	column BridgeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ab5ca4b9-b800-4eca-9d0d-ccc914b538ea
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [BridgeKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BridgeSort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1fbe72f2-8fc8-4cdb-8675-52cc12bb2296
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [BridgeSort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BridgeAR
+		dataType: string
+		lineageTag: 5f30086a-dd39-42b3-bca5-f2158ef34223
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [BridgeAR]
+		sortByColumn: BridgeSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column BridgeEN
+		dataType: string
+		lineageTag: c5e9e97e-5518-4a52-9e10-9d795843d5f7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [BridgeEN]
+		sortByColumn: BridgeSort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Variance Bridge' = calculated
+		mode: import
+		source =
+				-- Budget-to-actual bridge for Operating Profit:
+				-- row 0 = budgeted operating profit, then one row per Level-4 group under Operating Profit
+				-- (Net Sales, Cost of Sales, Labor Expenses, Travel Expenses, ...), in income-statement order.
+				VAR Groups =
+				    CALCULATETABLE (
+				        SUMMARIZE ( DimAccount, DimAccount[Level4Key], DimAccount[Level4Sort], DimAccount[Level4AR], DimAccount[Level4EN] ),
+				        DimAccount[Level2EN] = "Operating Profit",
+				        DimAccount[AccountDepth] >= 4
+				    )
+				RETURN
+				    UNION (
+				        ROW ( "BridgeKey", 0, "BridgeSort", 0, "BridgeAR", "الربح التشغيلي المخطط", "BridgeEN", "Budgeted Operating Profit" ),
+				        SELECTCOLUMNS (
+				            Groups,
+				            "BridgeKey", DimAccount[Level4Key],
+				            "BridgeSort", DimAccount[Level4Sort],
+				            "BridgeAR", DimAccount[Level4AR],
+				            "BridgeEN", DimAccount[Level4EN]
+				        )
+				    )
+
+	annotation PBI_Id = 5d5e356e8d2b47949d6726f9e9db8759
+

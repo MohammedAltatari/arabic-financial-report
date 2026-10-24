@@ -301,6 +301,44 @@ table FactFinance
 		displayFolder: 5. Income Statement
 		lineageTag: e1b3c50f-9311-4391-9ea8-2f697b09eac8
 
+	/// Waterfall value: budgeted operating profit on the first row, then each group's variance. Bars add up to actual operating profit.
+	measure 'Bridge Value' =
+			VAR k = SELECTEDVALUE ( 'Variance Bridge'[BridgeKey] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( k ), [OP Actual],
+			        k = 0, [OP Budget],
+			        CALCULATE (
+			            [Actual (Budget Period)] - [Budget],
+			            TREATAS ( { k }, DimAccount[Level4Key] ),
+			            DimAccount[Level2EN] = "Operating Profit"
+			        )
+			    )
+		formatString: #,0;(#,0);-
+		displayFolder: 8. Variance Analysis
+		lineageTag: 2cb6c179-e626-4755-97c9-a5a0f7ee0536
+
+	/// Operating-profit variance for leaf accounts only (used in the 'largest variances' bar chart).
+	measure 'Account Variance' =
+			CALCULATE (
+			    [Actual (Budget Period)] - [Budget],
+			    DimAccount[Level2EN] = "Operating Profit",
+			    DimAccount[IsLeaf] = 1
+			)
+		formatString: #,0;(#,0);-
+		displayFolder: 8. Variance Analysis
+		lineageTag: 02324bde-5b51-49a5-9cad-f4ae8b706010
+
+	/// Bar colour for [Account Variance]: green favorable, red unfavorable.
+	measure 'Color Account Variance' =
+			VAR v = [Account Variance]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), "#9CA3AF", v >= 0, "#1E8449", "#C0392B" )
+		isHidden
+		displayFolder: 7. Formatting
+		lineageTag: bf417f67-002d-4579-89f7-6c10b406f65e
+
 	column FinanceKey
 		dataType: int64
 		isHidden

@@ -19,6 +19,7 @@ ref table DimOrganization
 ref table DimScenario
 ref table DimDate
 ref table 'Forecast Cutoff'
+ref table 'Variance Bridge'
 
 ref cultureInfo en-US
 
