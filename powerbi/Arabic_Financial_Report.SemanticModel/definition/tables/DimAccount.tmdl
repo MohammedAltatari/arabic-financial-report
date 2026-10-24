@@ -144,6 +144,317 @@ table DimAccount
 
 		annotation SummarizationSetBy = Automatic
 
+	column AccountPath = PATH ( DimAccount[AccountKey], DimAccount[ParentAccountKey] )
+		dataType: string
+		isHidden
+		lineageTag: fba1295a-cfcb-4566-b080-b0b2084da45b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountDepth = PATHLENGTH ( DimAccount[AccountPath] )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1900f87d-af04-4a51-a277-e1fb7242aa33
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level1Key =
+			-- Ancestor at level 1; shallower accounts repeat themselves (ragged hierarchy)
+			VAR AncestorKey = PATHITEM ( DimAccount[AccountPath], 1, INTEGER )
+			RETURN
+			    IF ( ISBLANK ( AncestorKey ), DimAccount[AccountKey], AncestorKey )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 74d4101d-df19-4587-b793-ee689bda48ff
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level1Sort = LOOKUPVALUE ( DimAccount[AccountSortOrder], DimAccount[AccountKey], DimAccount[Level1Key] )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7efbeff8-8c9e-4e2c-af6d-5e3aae3670f5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level1AR = LOOKUPVALUE ( DimAccount[AccountNameAR], DimAccount[AccountKey], DimAccount[Level1Key] )
+		dataType: string
+		isHidden
+		lineageTag: 4f0e87e6-1590-4a0b-aafb-ba199dedc132
+		summarizeBy: none
+		sortByColumn: Level1Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level1EN = LOOKUPVALUE ( DimAccount[AccountNameEN], DimAccount[AccountKey], DimAccount[Level1Key] )
+		dataType: string
+		isHidden
+		lineageTag: aff7f9df-f62f-4d63-a3ea-0a98a20382f3
+		summarizeBy: none
+		sortByColumn: Level1Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level2Key =
+			-- Ancestor at level 2; shallower accounts repeat themselves (ragged hierarchy)
+			VAR AncestorKey = PATHITEM ( DimAccount[AccountPath], 2, INTEGER )
+			RETURN
+			    IF ( ISBLANK ( AncestorKey ), DimAccount[AccountKey], AncestorKey )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 677f3eef-44ea-4e34-a5cc-3d3c202bf878
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level2Sort = LOOKUPVALUE ( DimAccount[AccountSortOrder], DimAccount[AccountKey], DimAccount[Level2Key] )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 25752179-9074-4516-8f4b-2a0fe7f10c12
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level2AR = LOOKUPVALUE ( DimAccount[AccountNameAR], DimAccount[AccountKey], DimAccount[Level2Key] )
+		dataType: string
+		isHidden
+		lineageTag: 5608de4f-f9b5-45f9-8fd5-c84b55f6f9e1
+		summarizeBy: none
+		sortByColumn: Level2Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level2EN = LOOKUPVALUE ( DimAccount[AccountNameEN], DimAccount[AccountKey], DimAccount[Level2Key] )
+		dataType: string
+		isHidden
+		lineageTag: bd9b83d6-f605-4582-bdae-39dc1dd819c8
+		summarizeBy: none
+		sortByColumn: Level2Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level3Key =
+			-- Ancestor at level 3; shallower accounts repeat themselves (ragged hierarchy)
+			VAR AncestorKey = PATHITEM ( DimAccount[AccountPath], 3, INTEGER )
+			RETURN
+			    IF ( ISBLANK ( AncestorKey ), DimAccount[AccountKey], AncestorKey )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 72667fcc-c0b7-4b05-91f1-89c12241719f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level3Sort = LOOKUPVALUE ( DimAccount[AccountSortOrder], DimAccount[AccountKey], DimAccount[Level3Key] )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 24d83483-2fa5-4ee2-865c-e537bbc1a2a9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level3AR = LOOKUPVALUE ( DimAccount[AccountNameAR], DimAccount[AccountKey], DimAccount[Level3Key] )
+		dataType: string
+		isHidden
+		lineageTag: 8ef1ca67-eb5f-4b1f-9f87-f5fdb680094b
+		summarizeBy: none
+		sortByColumn: Level3Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level3EN = LOOKUPVALUE ( DimAccount[AccountNameEN], DimAccount[AccountKey], DimAccount[Level3Key] )
+		dataType: string
+		isHidden
+		lineageTag: 25d5a38c-3d54-4a2c-88c6-d6775a1932ab
+		summarizeBy: none
+		sortByColumn: Level3Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level4Key =
+			-- Ancestor at level 4; shallower accounts repeat themselves (ragged hierarchy)
+			VAR AncestorKey = PATHITEM ( DimAccount[AccountPath], 4, INTEGER )
+			RETURN
+			    IF ( ISBLANK ( AncestorKey ), DimAccount[AccountKey], AncestorKey )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6eb79a09-0f2f-4a67-9945-1f709b758fc1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level4Sort = LOOKUPVALUE ( DimAccount[AccountSortOrder], DimAccount[AccountKey], DimAccount[Level4Key] )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f77b369c-d6b8-4ae4-9c82-084df67e8182
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level4AR = LOOKUPVALUE ( DimAccount[AccountNameAR], DimAccount[AccountKey], DimAccount[Level4Key] )
+		dataType: string
+		isHidden
+		lineageTag: ee436fe1-fedb-4ac0-b0f8-8a71245241fe
+		summarizeBy: none
+		sortByColumn: Level4Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level4EN = LOOKUPVALUE ( DimAccount[AccountNameEN], DimAccount[AccountKey], DimAccount[Level4Key] )
+		dataType: string
+		isHidden
+		lineageTag: 27e832a9-f7ec-4feb-8b3d-c42ddabb1ec0
+		summarizeBy: none
+		sortByColumn: Level4Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level5Key =
+			-- Ancestor at level 5; shallower accounts repeat themselves (ragged hierarchy)
+			VAR AncestorKey = PATHITEM ( DimAccount[AccountPath], 5, INTEGER )
+			RETURN
+			    IF ( ISBLANK ( AncestorKey ), DimAccount[AccountKey], AncestorKey )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e155befb-a1e9-4ffc-95aa-aecf6718e92a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level5Sort = LOOKUPVALUE ( DimAccount[AccountSortOrder], DimAccount[AccountKey], DimAccount[Level5Key] )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 98ba382b-59e5-4dbd-a56a-105dddb09a32
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level5AR = LOOKUPVALUE ( DimAccount[AccountNameAR], DimAccount[AccountKey], DimAccount[Level5Key] )
+		dataType: string
+		isHidden
+		lineageTag: 27316afe-933c-411f-be5b-4b3d98fbf386
+		summarizeBy: none
+		sortByColumn: Level5Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level5EN = LOOKUPVALUE ( DimAccount[AccountNameEN], DimAccount[AccountKey], DimAccount[Level5Key] )
+		dataType: string
+		isHidden
+		lineageTag: b84da895-b1a3-4534-8827-dcc30cae0b3c
+		summarizeBy: none
+		sortByColumn: Level5Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level6Key =
+			-- Ancestor at level 6; shallower accounts repeat themselves (ragged hierarchy)
+			VAR AncestorKey = PATHITEM ( DimAccount[AccountPath], 6, INTEGER )
+			RETURN
+			    IF ( ISBLANK ( AncestorKey ), DimAccount[AccountKey], AncestorKey )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f6a15b88-b7f4-49ce-a13c-39ba074e2a70
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level6Sort = LOOKUPVALUE ( DimAccount[AccountSortOrder], DimAccount[AccountKey], DimAccount[Level6Key] )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 086f5e83-5ef8-401e-926d-3f709c18c9e2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level6AR = LOOKUPVALUE ( DimAccount[AccountNameAR], DimAccount[AccountKey], DimAccount[Level6Key] )
+		dataType: string
+		isHidden
+		lineageTag: 3c556942-f098-4017-938f-a04ad3d31150
+		summarizeBy: none
+		sortByColumn: Level6Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level6EN = LOOKUPVALUE ( DimAccount[AccountNameEN], DimAccount[AccountKey], DimAccount[Level6Key] )
+		dataType: string
+		isHidden
+		lineageTag: 218eba77-3bdd-4fae-8adc-9aed04bc1c7f
+		summarizeBy: none
+		sortByColumn: Level6Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Income Statement AR'
+		lineageTag: e8482480-f57b-401c-92e3-0bac1beba593
+
+		level 'Level 1'
+			lineageTag: 597fead3-3022-4cca-a5c2-6813be229d73
+			column: Level1AR
+
+		level 'Level 2'
+			lineageTag: 4ce7ba3d-ac00-4dea-bc09-1e1472538db4
+			column: Level2AR
+
+		level 'Level 3'
+			lineageTag: 0f061b22-f014-4b2d-8d26-0583f56e581a
+			column: Level3AR
+
+		level 'Level 4'
+			lineageTag: 5c6b3ff4-8f7a-4166-a289-cc78856b5573
+			column: Level4AR
+
+		level 'Level 5'
+			lineageTag: f4b7620f-3f01-47c9-9a58-99d7557b1cdb
+			column: Level5AR
+
+		level 'Level 6'
+			lineageTag: 29f779a6-9918-4634-82ab-8078f0751816
+			column: Level6AR
+
+	hierarchy 'Income Statement EN'
+		lineageTag: 853ffab1-9c61-4250-a0ef-a54b98fbd310
+
+		level 'Level 1'
+			lineageTag: bf7cdcfe-801a-4525-9e46-6442dd6183e5
+			column: Level1EN
+
+		level 'Level 2'
+			lineageTag: fb9db095-555a-4c61-9347-a9843a7c94c9
+			column: Level2EN
+
+		level 'Level 3'
+			lineageTag: 94679078-139a-4fb0-a433-4466e3745d23
+			column: Level3EN
+
+		level 'Level 4'
+			lineageTag: 4fbc98e7-4317-42f8-8697-32ce7e04b005
+			column: Level4EN
+
+		level 'Level 5'
+			lineageTag: 08f2c13f-bfdf-422a-aff7-6121684f9e78
+			column: Level5EN
+
+		level 'Level 6'
+			lineageTag: 7edf74c0-23bd-4218-9f94-ebfed1fe8287
+			column: Level6EN
+
 	partition DimAccount = m
 		mode: import
 		source =

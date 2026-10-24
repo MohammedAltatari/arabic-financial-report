@@ -165,6 +165,52 @@ table FactFinance
 		displayFolder: 4. Time Intelligence
 		lineageTag: f3fb44fe-84c4-4b5d-82c7-91d01aea7ebc
 
+	/// TRUE when the matrix row is a repeated (ragged) level below the account's real depth. Used by all IS measures.
+	measure 'IS Hide Row' =
+			VAR BrowseDepth =
+			        INT ( ISINSCOPE ( DimAccount[Level1AR] ) || ISINSCOPE ( DimAccount[Level1EN] ) ) +
+			        INT ( ISINSCOPE ( DimAccount[Level2AR] ) || ISINSCOPE ( DimAccount[Level2EN] ) ) +
+			        INT ( ISINSCOPE ( DimAccount[Level3AR] ) || ISINSCOPE ( DimAccount[Level3EN] ) ) +
+			        INT ( ISINSCOPE ( DimAccount[Level4AR] ) || ISINSCOPE ( DimAccount[Level4EN] ) ) +
+			        INT ( ISINSCOPE ( DimAccount[Level5AR] ) || ISINSCOPE ( DimAccount[Level5EN] ) ) +
+			        INT ( ISINSCOPE ( DimAccount[Level6AR] ) || ISINSCOPE ( DimAccount[Level6EN] ) )
+			VAR RowDepth = MAX ( DimAccount[AccountDepth] )
+			RETURN
+			    BrowseDepth > RowDepth
+		isHidden
+		displayFolder: 5. Income Statement
+		lineageTag: 9cedecec-e8bf-4e30-acc9-9785537b4039
+
+	/// [Actual] for the income statement matrix (hides repeated ragged-hierarchy rows).
+	measure 'IS Actual' = IF ( NOT [IS Hide Row], [Actual] )
+		formatString: #,0;(#,0);-
+		displayFolder: 5. Income Statement
+		lineageTag: 7c00d7ee-93a5-48a4-8752-531a8111f5ad
+
+	/// [Budget] for the income statement matrix (hides repeated ragged-hierarchy rows).
+	measure 'IS Budget' = IF ( NOT [IS Hide Row], [Budget] )
+		formatString: #,0;(#,0);-
+		displayFolder: 5. Income Statement
+		lineageTag: 6fc8cab1-3a5b-43fe-910b-90326466f211
+
+	/// [Rolling Forecast] for the income statement matrix (hides repeated ragged-hierarchy rows).
+	measure 'IS Rolling Forecast' = IF ( NOT [IS Hide Row], [Rolling Forecast] )
+		formatString: #,0;(#,0);-
+		displayFolder: 5. Income Statement
+		lineageTag: d729d61f-d6a9-4619-9edb-bba13425b1b6
+
+	/// [Variance] for the income statement matrix (hides repeated ragged-hierarchy rows).
+	measure 'IS Variance' = IF ( NOT [IS Hide Row], [Variance] )
+		formatString: #,0;(#,0);-
+		displayFolder: 5. Income Statement
+		lineageTag: 20c62698-09c3-47d3-8c52-fc5ada27bfc1
+
+	/// [Variance %] for the income statement matrix (hides repeated ragged-hierarchy rows).
+	measure 'IS Variance %' = IF ( NOT [IS Hide Row], [Variance %] )
+		formatString: 0.0%;(0.0%);-
+		displayFolder: 5. Income Statement
+		lineageTag: 10bb1881-1bb7-4b5b-8e14-144feb8193ce
+
 	column FinanceKey
 		dataType: int64
 		isHidden

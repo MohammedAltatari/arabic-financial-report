@@ -1,0 +1,9 @@
+EVALUATE
+ROW (
+    "Accounts", COUNTROWS ( DimAccount ),
+    "Max depth", MAX ( DimAccount[AccountDepth] ),
+    "Empty level names", COUNTROWS ( FILTER ( DimAccount, ISBLANK ( DimAccount[Level6AR] ) || ISBLANK ( DimAccount[Level6EN] ) ) ),
+    "Gross Margin (L3)", CALCULATE ( [Actual (Budget Period)], DimAccount[Level3EN] = "Gross Margin" ),
+    "Operating Profit (L2)", CALCULATE ( [Actual (Budget Period)], DimAccount[Level2EN] = "Operating Profit" ),
+    "Net Income 2012 (L1)", CALCULATE ( [Actual], DimAccount[Level1EN] = "Net Income", DimDate[Year] = 2012 )
+)
