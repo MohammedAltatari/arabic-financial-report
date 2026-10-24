@@ -1,0 +1,22 @@
+EVALUATE
+UNION (
+    ROW ( "CheckNo", 1, "CheckName", "Net Sales - Actual (budget period)",
+          "PbiValue", ROUND ( [Net Sales Actual], 0 ) ),
+    ROW ( "CheckNo", 2, "CheckName", "Net Sales - Budget",
+          "PbiValue", ROUND ( CALCULATE ( [Budget], DimAccount[Level4EN] = "Net Sales" ), 0 ) ),
+    ROW ( "CheckNo", 3, "CheckName", "Operating Profit - Actual (budget period)",
+          "PbiValue", ROUND ( [OP Actual], 0 ) ),
+    ROW ( "CheckNo", 4, "CheckName", "Operating Profit - Budget",
+          "PbiValue", ROUND ( [OP Budget], 0 ) ),
+    ROW ( "CheckNo", 5, "CheckName", "Operating Profit - Variance",
+          "PbiValue", ROUND ( [OP Variance], 0 ) ),
+    ROW ( "CheckNo", 6, "CheckName", "Operating Profit - Rolling Forecast (May 2011)",
+          "PbiValue", ROUND ( [OP Rolling Forecast], 0 ) ),
+    ROW ( "CheckNo", 7, "CheckName", "Net Income - Actual (budget period)",
+          "PbiValue", ROUND ( [Actual (Budget Period)], 0 ) ),
+    ROW ( "CheckNo", 8, "CheckName", "Net Income - Actual 2012",
+          "PbiValue", ROUND ( CALCULATE ( [Actual], DimDate[Year] = 2012 ), 0 ) ),
+    ROW ( "CheckNo", 9, "CheckName", "Net Income - Actual 2013",
+          "PbiValue", ROUND ( CALCULATE ( [Actual], DimDate[Year] = 2013 ), 0 ) )
+)
+ORDER BY [CheckNo]
