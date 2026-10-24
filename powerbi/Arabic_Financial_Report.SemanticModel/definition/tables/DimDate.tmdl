@@ -129,6 +129,14 @@ table DimDate
 
 		annotation SummarizationSetBy = Automatic
 
+	column MonthYearAR = DimDate[MonthNameAR] & " " & DimDate[Year]
+		dataType: string
+		lineageTag: 2dcc1f6f-f3f5-49f7-a741-ea41552738d9
+		summarizeBy: none
+		sortByColumn: YearMonthKey
+
+		annotation SummarizationSetBy = Automatic
+
 	partition DimDate = m
 		mode: import
 		source =

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "slicerCutoff",
+  "position": {
+    "x": 40,
+    "y": 284,
+    "z": 9,
+    "height": 76,
+    "width": 340,
+    "tabOrder": 9
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Forecast Cutoff"
+                    }
+                  },
+                  "Property": "CutoffLabelAR"
+                }
+              },
+              "queryRef": "Forecast Cutoff.CutoffLabelAR",
+              "nativeQueryRef": "CutoffLabelAR",
+              "active": true,
+              "displayName": "آخر شهر مُغلق (الافتراضي: مايو 2011)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

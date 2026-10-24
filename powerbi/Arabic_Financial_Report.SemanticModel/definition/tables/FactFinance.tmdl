@@ -211,6 +211,72 @@ table FactFinance
 		displayFolder: 5. Income Statement
 		lineageTag: 10bb1881-1bb7-4b5b-8e14-144feb8193ce
 
+	/// Operating profit, actual, budget months only.
+	measure 'OP Actual' = CALCULATE ( [Actual (Budget Period)], DimAccount[Level2EN] = "Operating Profit" )
+		formatString: #,0;(#,0);-
+		displayFolder: 6. KPIs
+		lineageTag: 74f32b64-a554-4864-b646-14c7c64d4d15
+
+	/// Operating profit, budget.
+	measure 'OP Budget' = CALCULATE ( [Budget], DimAccount[Level2EN] = "Operating Profit" )
+		formatString: #,0;(#,0);-
+		displayFolder: 6. KPIs
+		lineageTag: d4879941-1d09-4534-9f3f-8c023a7465f4
+
+	/// Operating profit: Actual - Budget.
+	measure 'OP Variance' = CALCULATE ( [Variance], DimAccount[Level2EN] = "Operating Profit" )
+		formatString: #,0;(#,0);-
+		displayFolder: 6. KPIs
+		lineageTag: e376235a-6839-48c6-b308-e51717e6c7c2
+
+	/// Operating profit variance %.
+	measure 'OP Variance %' = CALCULATE ( [Variance %], DimAccount[Level2EN] = "Operating Profit" )
+		formatString: 0.0%;(0.0%);-
+		displayFolder: 6. KPIs
+		lineageTag: 90d57c3f-83bf-41f9-8877-52e6e55d09db
+
+	/// Operating profit rolling forecast (cutoff from 'Forecast Cutoff').
+	measure 'OP Rolling Forecast' = CALCULATE ( [Rolling Forecast], DimAccount[Level2EN] = "Operating Profit" )
+		formatString: #,0;(#,0);-
+		displayFolder: 6. KPIs
+		lineageTag: 40b34bae-8eaa-44e1-a42e-86f746201d95
+
+	/// Operating profit: Rolling Forecast - Budget.
+	measure 'OP Forecast Variance' = CALCULATE ( [Forecast Variance], DimAccount[Level2EN] = "Operating Profit" )
+		formatString: #,0;(#,0);-
+		displayFolder: 6. KPIs
+		lineageTag: 77a2c2b0-2288-4104-b24b-7ef9e36a846f
+
+	/// Net sales, actual, budget months only.
+	measure 'Net Sales Actual' = CALCULATE ( [Actual (Budget Period)], DimAccount[Level4EN] = "Net Sales" )
+		formatString: #,0;(#,0);-
+		displayFolder: 6. KPIs
+		lineageTag: 360667e9-93a0-4001-84c4-b5143a7a67fd
+
+	/// Net sales variance %.
+	measure 'Net Sales Variance %' = CALCULATE ( [Variance %], DimAccount[Level4EN] = "Net Sales" )
+		formatString: 0.0%;(0.0%);-
+		displayFolder: 6. KPIs
+		lineageTag: 59a02ea3-dfe2-4d0a-871a-effedcc073fe
+
+	/// Font colour for [OP Variance]: green when favorable (>= 0), red when unfavorable.
+	measure 'Color OP Variance' =
+			VAR v = [OP Variance]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), "#374151", v >= 0, "#1E8449", "#C0392B" )
+		isHidden
+		displayFolder: 7. Formatting
+		lineageTag: 91bc68fd-a93e-400a-8df2-14f3565c26a4
+
+	/// Font colour for [OP Forecast Variance]: green when favorable (>= 0), red when unfavorable.
+	measure 'Color OP Forecast Variance' =
+			VAR v = [OP Forecast Variance]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), "#374151", v >= 0, "#1E8449", "#C0392B" )
+		isHidden
+		displayFolder: 7. Formatting
+		lineageTag: bbaa1390-3e69-4d2a-aa85-9239776bbbf4
+
 	column FinanceKey
 		dataType: int64
 		isHidden

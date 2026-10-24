@@ -1,0 +1,74 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "forecast_cutoff.cutofflabelar": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Forecast Cutoff",
+			          "ConceptualProperty": "CutoffLabelAR"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "آخر شهر مُغلق (الافتراضي: مايو 2011)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.op_actual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "OP Actual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "الفعلي": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "factfinance.op_budget": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FactFinance",
+			          "ConceptualProperty": "OP Budget"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "الموازنة": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

@@ -20,3 +20,5 @@ ref table DimScenario
 ref table DimDate
 ref table 'Forecast Cutoff'
 
+ref cultureInfo en-US
+
